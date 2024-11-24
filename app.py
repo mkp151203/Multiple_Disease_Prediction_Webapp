@@ -13,7 +13,7 @@ CORS(app)
 # Load models for different diseases
 MODELS = {
     'heart': joblib.load('models/best_heart_disease_model.pkl'),
-    'liver': 1
+    'liver': joblib.load('models/Random_Forest.pkl')
     # 'diabetes': joblib.load('models/diabetes_model.sav'),
     # 'kidney': joblib.load('models/kidney_disease_model.sav'),
     # 'liver': joblib.load('models/liver_disease_model.sav'),
@@ -62,11 +62,11 @@ def disease_page(disease):
         return "Disease not supported.", 404
     return render_template(f'{disease}-disease.html')
 
-@app.route('/predict/<disease>', methods=['POST'])
+@app.route("/predict/<disease>", methods=["POST"])
 def predict(disease):
     """Handle predictions for the selected disease."""
     if disease not in MODELS:
-        return jsonify({'error': 'Disease not supported.'}), 404
+        return jsonify({"error": "Disease not supported."}), 404
 
     # Get the model and features for the disease
     model = MODELS[disease]
@@ -77,14 +77,16 @@ def predict(disease):
     cleaned_data = {}
     for feature in required_features:
         value = data.get(feature, None)
-        if value is None or value == '':
+        if value is None or value == "":
             logging.warning(f"Missing value for feature: {feature}")
-            return jsonify({'error': f'Missing or invalid value for feature: {feature}'}), 400
+            return jsonify(
+                {"error": f"Missing or invalid value for feature: {feature}"}
+            ), 400
         try:
             cleaned_data[feature] = float(value)
         except ValueError:
             logging.error(f"Invalid value for {feature}: {value}")
-            return jsonify({'error': f"Invalid value for {feature}: {value}"}), 400
+            return jsonify({"error": f"Invalid value for {feature}: {value}"}), 400
 
     # Convert to numpy array
     try:
@@ -92,27 +94,43 @@ def predict(disease):
         logging.debug(f"Input data for {disease}: {input_data}")
     except Exception as e:
         logging.error(f"Error processing input data for {disease}: {str(e)}")
-        return jsonify({'error': f"Error processing input data: {str(e)}"}), 500
+        return jsonify({"error": f"Error processing input data: {str(e)}"}), 500
+
+    # Apply scaler for liver disease only
+    if disease == "liver":
+        try:
+            with open("models/scaler.pkl", "rb") as scaler_file:
+                scaler = joblib.load(scaler_file)
+            input_data = scaler.transform(input_data)
+            logging.debug(f"Scaled input data for liver disease: {input_data}")
+        except Exception as e:
+            logging.error(f"Error loading scaler for liver disease: {str(e)}")
+            return jsonify({"error": f"Error loading scaler: {str(e)}"}), 500
 
     # Make prediction
     try:
         prediction = model.predict(input_data)[0]
         prediction = float(prediction)  # Convert to python float
-        probability = model.predict_proba(input_data)[0][1] if hasattr(model, 'predict_proba') else None
+        probability = (
+            model.predict_proba(input_data)[0][1]
+            if hasattr(model, "predict_proba")
+            else None
+        )
         if probability is not None:
             probability = float(probability)  # Convert to python float
         logging.debug(f"Prediction: {prediction}, Probability: {probability}")
     except Exception as e:
         logging.error(f"Error during prediction for {disease}: {str(e)}")
-        return jsonify({'error': f"Error during prediction: {str(e)}"}), 500
+        return jsonify({"error": f"Error during prediction: {str(e)}"}), 500
 
     # Prepare response
     response = {
-        'prediction': 'Positive' if prediction == 1 else 'Negative',
-        'probability': probability
+        "prediction": "Positive" if prediction == 1 else "Negative",
+        "probability": probability,
     }
     logging.debug(f"Response for {disease}: {response}")
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
