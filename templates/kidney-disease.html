@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Disease Prediction</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/scripts.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Multiple Disease Prediction</h2>
+        <ul>
+            <li><a href="heart-disease.html">Heart Disease Prediction</a></li>
+            <li><a href="liver-disease.html">Liver Disease Prediction</a></li>
+            <li><a href="kidney-disease.html" class="active">Kidney Disease Prediction</a></li>
+            <li><a href="stroke.html">Stroke Prediction</a></li>
+            <li><a href="diabetes.html">Diabetes Prediction</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Kidney Disease Prediction</h1>
+        <form id="kidney-disease-form">
+            <label>Age:</label>
+            <input type="number" name="age" required>
+        
+            <label>Blood Urea:</label>
+            <input type="number" name="bloodUrea" required>
+        
+            <label>Serum Creatinine:</label>
+            <input type="number" name="serumCreatinine" required>
+        
+            <label>Hemoglobin:</label>
+            <input type="number" step="0.1" name="hemoglobin" required>
+        
+            <label>Blood Pressure:</label>
+            <input type="number" name="bloodPressure" required>
+        
+            <label>Sodium Level:</label>
+            <input type="number" name="sodium" required>
+        
+            <label>Potassium Level:</label>
+            <input type="number" name="potassium" required>
+        
+            <label>Albumin:</label>
+            <input type="number" step="0.1" name="albumin" required>
+        
+            <button type="button" onclick="predictKidneyDisease()">Predict</button>
+        </form>
+        
+        <div id="result-kidney"></div>
+    </div>
+</body>
+</html>
