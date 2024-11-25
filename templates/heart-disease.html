@@ -8,7 +8,9 @@
     <script src="/static/js/scripts.js" defer></script>
 </head>
 <body>
+    <button class="sidebar-toggle">☰ Menu</button>
     <div class="sidebar">
+
         <h2>Multiple Disease Prediction</h2>
         <ul>
             <li><a href="/heart" class="active">Heart Disease Prediction</a></li>
@@ -80,5 +82,22 @@
         </form>
         <div id="result-heart"></div>
     </div>
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const toggleButton = document.querySelector('.sidebar-toggle');
+        const overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+    
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+            overlay.classList.toggle('visible');
+        });
+    
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('visible');
+            overlay.classList.remove('visible');
+        });
+    </script>  
 </body>
 </html>

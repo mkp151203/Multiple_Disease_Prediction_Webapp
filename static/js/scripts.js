@@ -7,6 +7,10 @@ function predictLiverDisease() {
   // Use the correct API URL for liver disease prediction
   handlePrediction("liver-disease-form", "/predict/liver", "result-liver");
 }
+function predictKidneyDisease() {
+  // Use the correct API URL for liver disease prediction
+  handlePrediction("kidney-disease-form", "/predict/kidney", "result-kidney");
+}
 
 function handlePrediction(formId, apiUrl, resultId) {
   const form = document.getElementById(formId);
@@ -37,3 +41,5 @@ function handlePrediction(formId, apiUrl, resultId) {
       console.error("Error:", error);
     });
 }
+
+
