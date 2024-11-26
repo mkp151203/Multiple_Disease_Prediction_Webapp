@@ -5,9 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease Prediction</title>
     <link rel="stylesheet" href="static/css/styles.css">
+    <style>
+        body {
+            background-image: url('/static/bg.jpg'); /* Replace with a random heart image URL */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            width: 50%;
+            margin: 100px auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-<button class="sidebar-toggle">☰ Menu</button>
+    <button class="sidebar-toggle">☰ Menu</button>
     <div class="sidebar">
         <h2>Multiple Disease Prediction</h2>
         <ul>
@@ -20,7 +49,8 @@
     </div>
     <div class="content">
         <h1>Welcome to Disease Prediction</h1>
-        <p>Select a disease from the menu to start predicting.</p>
+        <p>Our platform leverages the power of machine learning algorithms to help you predict the likelihood of various diseases based on your personal health data. Whether you're concerned about heart disease, liver disease, kidney disease, stroke, or diabetes, our models analyze key health parameters to provide accurate predictions and help you make informed decisions about your health.</p>
+        <p>Explore the available options from the menu, select the disease you're interested in, and enter your details to receive predictions powered by advanced machine learning models. Your health matters, and we are here to assist in your journey toward a healthier future.</p>
     </div>
 
     <!-- Sidebar Toggle Script -->
@@ -30,12 +60,12 @@
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
         document.body.appendChild(overlay);
-    
+
         toggleButton.addEventListener('click', () => {
             sidebar.classList.toggle('visible');
             overlay.classList.toggle('visible');
         });
-    
+
         overlay.addEventListener('click', () => {
             sidebar.classList.remove('visible');
             overlay.classList.remove('visible');
@@ -43,8 +73,7 @@
     </script>    
 
     <!-- Bot Embedding -->
-<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2024/11/25/19/20241125191921-2WWISJ9D.js"></script>
-    
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/11/25/19/20241125191921-2WWISJ9D.js"></script>
 </body>
 </html>
