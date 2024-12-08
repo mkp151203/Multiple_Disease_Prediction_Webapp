@@ -15,6 +15,7 @@ MODELS = {
     'heart': joblib.load('models/best_heart_disease_model.pkl'),
     'liver': joblib.load('models/Random_Forest.pkl'),
     'kidney': 1,
+    'diabetes':1,
     # 'kidney': joblib.load('models/kidney_disease_model.sav'),
     # 'liver': joblib.load('models/liver_disease_model.sav'),
     # 'stroke': joblib.load('models/stroke_model.sav'),

@@ -109,12 +109,6 @@ h1 {
     margin-bottom: 30px;
     text-align: center; /* Center heading */
 }
-p {
-    font-size: 14px;
-    color: #ffffff;
-    text-align: justify; /* Center heading */
-    
-}
 
 /* Form Styles */
 form {
@@ -126,7 +120,7 @@ form {
 
 .form-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Two equal-width columns */
+    grid-template-columns: 1fr 1fr; /* Two equal-width columns */
     gap: 20px;
 }
 

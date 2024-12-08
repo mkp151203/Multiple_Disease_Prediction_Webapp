@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Prediction</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/diabetes.css">
     <script src="static/js/scripts.js" defer></script>
+    <style>
+        body {
+            background-image: url('/static/diabetes.jpg'); /* Replace with a random heart image URL */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
     <button class="sidebar-toggle">☰ Menu</button>
@@ -15,13 +24,15 @@
             <li><a href="/heart">Heart Disease Prediction</a></li>
             <li><a href="/liver">Liver Disease Prediction</a></li>
             <li><a href="/kidney">Kidney Disease Prediction</a></li>
-            <li><a href="/stroke">Stroke Prediction</a></li>
+            <!-- <li><a href="/stroke">Stroke Prediction</a></li> -->
             <li><a href="/diabetes">Diabetes Prediction</a></li>
         </ul>
     </div>
     <div class="content">
         <h1>Diabetes Prediction</h1>
         <form id="diabetes-form">
+            <div class="form-container">
+                <div class="form-left">
             <label>Age:</label>
             <input type="number" name="age" required>
         
@@ -33,6 +44,8 @@
         
             <label>Skin Thickness:</label>
             <input type="number" name="skinThickness" required>
+                </div>
+                <div class = "form-right">
         
             <label>Insulin Level:</label>
             <input type="number" name="insulin" required>
@@ -45,11 +58,15 @@
         
             <label>Number of Pregnancies:</label>
             <input type="number" name="pregnancies" required>
-        
+            
+            </div>
             <button type="button" onclick="predictDiabetes()">Predict</button>
+            
         </form>
         
+        
         <div id="result-diabetes"></div>
+
     </div>
     <script>
         const sidebar = document.querySelector('.sidebar');
