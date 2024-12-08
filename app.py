@@ -12,10 +12,10 @@ CORS(app)
 
 # Load models for different diseases
 MODELS = {
-    'heart': joblib.load('models/best_heart_disease_model.pkl'),
-    'liver': joblib.load('models/Random_Forest.pkl'),
-    'kidney': 1,
-    'diabetes':1,
+    'heart': joblib.load('models/voting_classifier_Heart.pkl'),
+    'liver': joblib.load('models/voting_classifier_Liver.pkl'),
+    'kidney': joblib.load('models/voting_classifier_Kidney.pkl'),
+    'diabetes':joblib.load('models/voting_classifier_Diabetes.pkl'),
     # 'kidney': joblib.load('models/kidney_disease_model.sav'),
     # 'liver': joblib.load('models/liver_disease_model.sav'),
     # 'stroke': joblib.load('models/stroke_model.sav'),
@@ -97,8 +97,8 @@ def predict(disease):
         logging.error(f"Error processing input data for {disease}: {str(e)}")
         return jsonify({"error": f"Error processing input data: {str(e)}"}), 500
 
-    # Apply scaler for liver disease only
-    if disease == "liver":
+    # Apply scaler for diabetes only
+    if disease == "diabetes":
         try:
             with open("models/scaler.pkl", "rb") as scaler_file:
                 scaler = joblib.load(scaler_file)
@@ -110,25 +110,31 @@ def predict(disease):
 
     # Make prediction
     try:
-        prediction = model.predict(input_data)[0]
+        prediction = model.predict(input_data)
         prediction = float(prediction)  # Convert to python float
-        probability = (
-            model.predict_proba(input_data)[0][1]
-            if hasattr(model, "predict_proba")
-            else None
-        )
-        if probability is not None:
-            probability = float(probability)  # Convert to python float
-        logging.debug(f"Prediction: {prediction}, Probability: {probability}")
+        # probability = (
+        #     model.predict_proba(input_data)[0][1]
+        #     if hasattr(model, "predict_proba")
+        #     else None
+        # )
+        # if probability is not None:
+        #     probability = float(probability)  # Convert to python float
+        logging.debug(f"Prediction: {prediction}")
     except Exception as e:
         logging.error(f"Error during prediction for {disease}: {str(e)}")
         return jsonify({"error": f"Error during prediction: {str(e)}"}), 500
 
     # Prepare response
-    response = {
-        "prediction": "Positive" if prediction == 1 else "Negative",
-        "probability": probability,
-    }
+    if disease == 'kidney':
+        response = {
+            "prediction": "Positive" if prediction == 0 else "Negative",
+            # "probability": probability,
+        }
+    else:
+        response = {
+            "prediction": "Positive" if prediction == 1 else "Negative",
+            # "probability": probability,
+        }
     logging.debug(f"Response for {disease}: {response}")
     return jsonify(response)
 

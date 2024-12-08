@@ -187,7 +187,7 @@ button:active {
 }
 
 /* Prediction Result Styling */
-#result-heart,#result-liver,#result-kidney {
+#result-heart,#result-liver,#result-kidney,#result-diabetes {
     margin-top: 30px;
     padding: 15px;
     border: 1px solid #6ec1e4;

@@ -11,7 +11,10 @@ function predictKidneyDisease() {
   // Use the correct API URL for liver disease prediction
   handlePrediction("kidney-disease-form", "/predict/kidney", "result-kidney");
 }
-
+function predictDiabetes() {
+  // Use the correct API URL for liver disease prediction
+  handlePrediction("diabetes-form", "/predict/diabetes", "result-diabetes");
+}
 function handlePrediction(formId, apiUrl, resultId) {
   const form = document.getElementById(formId);
   const formData = new FormData(form);
