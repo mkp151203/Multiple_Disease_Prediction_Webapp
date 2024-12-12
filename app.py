@@ -126,15 +126,22 @@ def predict(disease):
 
     # Prepare response
     if disease == 'kidney':
-        response = {
-            "prediction": "Positive" if prediction == 0 else "Negative",
-            # "probability": probability,
-        }
+        if prediction == 0:
+            response = "Prediction result : POSITIVE, The model predicts that you have Chronic "+disease+" disease" 
+        else:
+            response = "Prediction result : NEGATIVE, The model predicts that you DO NOT have Chronic"+disease+" disease"
+    elif disease == 'diabetes':
+        if prediction == 1:
+            response = "Prediction result : POSITIVE, The model predicts that you have "+disease
+        else:
+            response = "Prediction result : NEGATIVE, The model predicts that you DO NOT have "+disease
     else:
-        response = {
-            "prediction": "Positive" if prediction == 1 else "Negative",
+        if prediction == 1:
+            response = "Prediction result : POSITIVE, The model predicts that you have "+disease+" disease" 
+        else:
+            response = "Prediction result : NEGATIVE, The model predicts that you DO NOT have "+disease+" disease"
             # "probability": probability,
-        }
+        
     logging.debug(f"Response for {disease}: {response}")
     return jsonify(response)
 
