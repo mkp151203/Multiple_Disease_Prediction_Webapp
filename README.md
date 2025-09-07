@@ -1,4 +1,5 @@
 # 🫀 Project\_Exb\_1 – Multiple Disease Prediction Web App
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://multiple-disease-prediction-webapp-2wgd.onrender.com/) <- click here to check out the DEMO.
 
 An end-to-end web application for predicting multiple diseases using machine learning, complete with datasets, trained models, Jupyter notebooks, and an interactive frontend. This project also includes documentation and presentation materials for academic or demo purposes.
 
