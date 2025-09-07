@@ -46,8 +46,8 @@ Project_Exb_1/
 ### 1⃣ Clone the repository
 
 ```bash
-git clone https://github.com/mkp151203/Project_Exb_1.git
-cd Project_Exb_1
+git clone https://github.com/mkp151203/Multiple_Disease_Prediction_Webapp.git
+cd Multiple_Disease_Prediction_Webapp
 ```
 
 ### 2⃣ Install dependencies
